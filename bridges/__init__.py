@@ -2,7 +2,7 @@
 
 #~ import models
 import dbfilterfix
-import product
-import purchase
-import sale
-import partner
+#~ import product
+#~ import purchase
+#~ import sale
+#~ import partner
