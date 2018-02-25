@@ -16,7 +16,7 @@ Contains company specific customizations and configuration data
     'website': 'http://www.excecbc.com',
     'data': [
         'config.xml',
-        'report_paperformat.xml',
+        #'report_paperformat.xml',
         'layouts.xml',
         'views.xml',
         
