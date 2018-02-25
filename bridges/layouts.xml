@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+
+<!-- rearrange address info in header use innosen-->
+<!-- make header smaller but keep adress in there -->
+<!-- you cannot align to bottom, you need to a table for that -->
+<template id="external_layout_header" inherit_id="report.external_layout_header">
+        
+    <!-- logo needs one less column  and shifte down a bit to top align entire header -->
+    <xpath expr="//div[@class='col-xs-3']" position="attributes">
+        <attribute name="class">col-xs-2</attribute>
+        <attribute name="style">padding-top: 5px;</attribute>
+     
+    </xpath>       
+    <xpath expr="//img[1]" position="attributes">
+        <attribute name="style">max-height: 70px; vertical-align: text-top</attribute>
+    </xpath>    
+    <xpath expr="//div[@class='col-xs-9 text-right']" position='before'>
+        <div class="col-xs-6" name="company_address">
+            <span t-field="company.partner_id"
+                t-field-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true}'
+                style="display:inline-block;"/>
+        </div>
+    </xpath>
+    <xpath expr="//div[@class='col-xs-9 text-right']" position="attributes">
+        <attribute name="class">col-xs-4 text-right</attribute>
+        <attribute name="style"></attribute>
+    </xpath>   
+     
+    <xpath expr="//div[@class='row'][2]" position="replace" />
+    
+</template>
+
+<template id="external_layout_footer" inherit_id="report.external_layout_footer">
+    <xpath expr="//ul[@name='financial_infos']/li[1]" position="replace">
+        <li t-if="company.vat">VAT no.: <span t-field="company.vat"/></li>
+    </xpath>       
+</template>
+
+<!-- the additions to invoice report by sales module has to be inactivated (done in database directly) -->
+<template id="kei_report_invoice_document" inherit_id="account.report_invoice_document">    
+    <xpath expr="//div[@name='invoice_address']" position="replace">
+                <div name="invoice_address" class="col-xs-5 col-xs-offset-7">
+                    <strong>Invoicing address:</strong>
+                    <address t-field="o.partner_id"
+                        t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}' />
+                        <span t-if="o.partner_id.vat">VAT no.: <span t-field="o.partner_id.vat"/></span> 
+                </div>        
+    </xpath>
+    <!-- rename amount column -->
+    <xpath expr="//thead[1]" position="replace" >
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th class="hidden">Source Document</th>
+                <th class="text-right">Quantity</th>
+                <th class="text-right">Unit Price</th>
+                <th t-if="display_discount" class="text-right" groups="sale.group_discount_per_so_line">Disc.(%)</th>
+                <th class="text-right">Amount</th>
+            </tr>
+        </thead>
+    </xpath>     
+    <!-- remove taxes column -->
+    <xpath expr="//tbody[@class='invoice_tbody']/tr/td[6]" position="replace" /> 
+    <!-- allow for longer descriptions --> 
+    <xpath expr="//div[@class='row mt32 mb32']/div[@t-if='o.name']" position="replace" >
+                <div class="col-xs-11" t-if="o.name">
+                    <p><strong>Subject: </strong><span t-field="o.name"/></p>
+                </div>
+    </xpath>
+    <!-- label pro forma change -->
+    <xpath expr="//div[@class='page']/h2/span[2]" position="replace">
+        <span t-if="o.type == 'out_invoice' and o.state == 'proforma2'">Pro-Forma Invoice</span>
+    </xpath>
+    <!--<xpath expr="//thead/tr/th[1]" position="before" >
+        <th>Code</th>
+    </xpath>    
+    <xpath expr="//tbody[@class='invoice_tbody']/tr/td[1]" position="before" >     
+        <td><span t-field="l.product_id.partner_ref"/></td> 
+    </xpath>-->        
+</template>
+
+<!-- xpath works with full stops in search term?? -->
+<template id="kei_sale_report_invoice_document" inherit_id="sale.report_invoice_document_inherit_sale">    
+    <xpath expr="//span[@t-if='o.partner_id.vat']" position="replace">
+        <span t-if="o.partner_id.vat">VAT no.: <span t-field="o.partner_id.vat"/></span>    
+    </xpath>
+    <xpath expr="//span[@t-if='o.partner_shipping_id.vat']" position="replace">
+        <span t-if="o.partner_shipping_id.vat">VAT no.: <span t-field="o.partner_shipping_id.vat"/></span>    
+    </xpath>
+    <xpath expr="//span[@t-if='o.partner_shipping_id.vat']" position="replace">
+        <span t-if="o.partner_shipping_id.vat">VAT no.: <span t-field="o.partner_shipping_id.vat"/></span>    
+    </xpath>
+</template>    
+
+<template id="kei_report_purchaseorder_document" inherit_id="purchase.report_purchaseorder_document">    
+    <xpath expr="//h2[@t-if][1]" position="replace" >
+            <br />
+            <h2 t-if="o.state != 'draft'">Purchase Order</h2>
+    </xpath> 
+    <xpath expr="//h2[@t-if][2]" position="replace" >
+            <br />
+            <h2 t-if="o.state == 'draft'">Request for Quotation</h2>
+    </xpath>           
+    <xpath expr="//div[@t-if='o.partner_ref']/strong" position="replace" >
+        <strong>According Quote:</strong>
+    </xpath>           
+    <xpath expr="//p[@t-field='o.date_order']" position='attributes'>
+        <attribute name='t-field-options'>{"widget": "date"}</attribute>
+    </xpath>
+    <!-- remove taxes column -->
+    <xpath expr="//thead/tr/th[2]" position="replace" />
+    <xpath expr="//tr[@t-foreach='o.order_line']/td[2]" position="replace" />   
+    <!-- remove date required column -->  
+    <xpath expr="//thead/tr/th[2]" position="replace" />
+    <xpath expr="//tr[@t-foreach='o.order_line']/td[2]" position="replace" />        
+</template>
+
+<template id="kei_report_purchasequotation_document" inherit_id="purchase.report_purchasequotation_document">    
+
+    <xpath expr="//h2[1]" position="replace" >
+            <br />
+            <h2>Request for Quotation</h2>
+            <div class="row mt32 mb32">
+                <div t-if="o.name" class="col-xs-3">
+                    <strong>Our Reference:</strong>
+                    <p t-field="o.name"/>
+                </div>
+                <div t-if="o.date_order" class="col-xs-3">
+                    <strong>Date:</strong>
+                    <p t-field="o.date_order" t-field-options="{'widget': 'date'}" />
+                </div>
+            </div>            
+    </xpath>  
+    <xpath expr="//span[@t-field='order_line.date_planned']" position='replace' />
+   
+</template>
+
+
+<template id="kei_report_saleorder_document" inherit_id="sale.report_saleorder_document">    
+    <!-- only display in voice and shipping address info if any one of them is different from the partner address -->
+    <xpath expr="//div[@class='page']/div[@class='row']" position="replace">
+            <div class="row">
+                <div class="col-xs-6">
+                    <div t-if="doc.partner_invoice_id != doc.partner_id or doc.partner_shipping_id != doc.partner_id">
+                        <div t-if="doc.partner_invoice_id !=  doc.partner_id" class="mt8">
+                            <strong t-if="doc.partner_invoice_id == doc.partner_shipping_id">Invoicing and Shipping address:</strong>
+                            <strong t-if="doc.partner_invoice_id != doc.partner_shipping_id">Invoicing address:</strong>
+                            <div t-field="doc.partner_invoice_id"
+                                t-options='{"widget": "contact", "fields": ["address", "name", "phone", "fax"], "no_marker": True, "phone_icons": True}'/>
+                            <p t-if="doc.partner_invoice_id.vat">VAT: <span t-field="doc.partner_invoice_id.vat"/></p>
+                        </div>
+                        <div t-if="doc.partner_shipping_id != doc.partner_id and doc.partner_shipping_id != doc.partner_invoice_id" class="mt8">
+                            <strong>Shipping address:</strong>
+                            <div t-field="doc.partner_shipping_id"
+                                t-options='{"widget": "contact", "fields": ["address", "name", "phone", "fax"], "no_marker": True, "phone_icons": True}'/>
+                            <p t-if="doc.partner_shipping_id.vat">VAT: <span t-field="doc.partner_shipping_id.vat"/></p>
+                        </div>
+                    </div>    
+                </div>
+                <div class="col-xs-5 col-xs-offset-1">
+                    <div t-field="doc.partner_id"
+                        t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}' />
+                </div>
+            </div>      
+    </xpath>        
+    <xpath expr="//div[@class='page']/h2/span[1]" position='replace'>
+        <span t-if="doc.state not in ['draft','sent']">Order Confirmation # </span>
+    </xpath>
+    <!-- remove tax column -->
+    <xpath expr="//thead/tr/th[5]" position="replace" />
+    <xpath expr="//t[@t-as='l']/tr/td[5]" position="replace" />      
+</template>
+
+<!--
+<template id="kei_report_delivery_document" inherit_id="stock.report_delivery_document">    
+      
+    <xpath expr="//div[@class='page']/h2" position='replace'>
+        <h2>
+            <span t-if="o.picking_type_id.code == 'outgoing' and (o.state == 'done')">Delivery Slip #</span><span t-field="o.name"/>
+        </h2>
+    </xpath> -->
+    <!-- list the result packacke as last col 
+    <xpath expr="//table[@t-if='o.pack_operation_ids']/thead/tr" position="inside">
+        <th t-if="any([pack_operation.result_package_id for pack_operation in o.pack_operation_ids])" class="text-right">
+            <strong>Pack</strong>
+        </th>
+    </xpath>    
+    <xpath expr="//table[@t-if='o.pack_operation_ids']/tbody/tr" position="inside">
+        <td class="text-right">
+          <t t-if="pack_operation.result_package_id">
+            <span t-field="pack_operation.result_package_id.packaging_id.name"/>#<span t-esc="sn" />
+          </t>  
+        </td>
+    </xpath>   
+    <!-- sort by pack 
+    <xpath expr="//tr[@t-foreach='o.pack_operation_ids']" position="before">
+        <t t-set="pack" t-value="o.pack_operation_ids.sorted(key=lambda x: x.result_package_id)[0].result_package_id"/>
+        <t t-set="sn" t-value="1 if pack else 0"/>
+    </xpath>    
+    <xpath expr="//tr[@t-foreach='o.pack_operation_ids']/td[1]" position="before">
+        <t t-if="pack_operation.result_package_id!=pack and pack_operation.result_package_id">
+            <t t-set="pack" t-value="pack_operation.result_package_id" />
+            <t t-set="sn" t-value="sn+1" />
+        </t>
+    </xpath> 
+    <xpath expr="//tr[@t-foreach='o.pack_operation_ids']" position="attributes">
+        <attribute name="t-foreach">o.pack_operation_ids.sorted(key=lambda x: x.result_package_id)</attribute>
+        <!--<attribute name="t-foreach">o.pack_operation_ids[::-1]</attribute> forbidden opcodes 
+    </xpath>  
+  
+    <xpath expr="//t[@t-if='backorder']" position="replace">
+        <t t-if="backorder">
+          Not all items could be shipped this time, the remaining ones will be shipped as soon as they become available.
+        </t>
+    </xpath>    
+    <xpath expr="//div[@class='page']" position="inside">
+        <p t-field="o.note" />
+    </xpath>
+</template>
+-->
+
+
+
+</data>
+</odoo>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- make due date visible and change description to subject -->
+        <record id="invoice_form" model="ir.ui.view">
+            <field name="name">br.account.invoice.form</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='date_due']" position="replace" >
+                    <field name="date_due"/>                 
+                </xpath>  
+                <xpath expr="//page[@name='other_info']/group/group[2]/field[@name='name']" position="attributes" >
+                    <attribute name="string">Subject</attribute>                 
+                </xpath>  
+           </field>
+        </record>   
+        
+        
+
+        <record id="product_packaging_tree_view" model="ir.ui.view">
+            <field name="name">product.packaging.tree.view</field>
+            <field name="model">product.packaging</field>
+            <field name="inherit_id" ref="product.product_packaging_tree_view" />            
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='qty']" position="replace">
+                    <field name="dimensions" />
+                    <field name="weight" />                    
+                </xpath>
+            </field>
+        </record>
+
+        <record id="product_packaging_form_view" model="ir.ui.view">
+            <field name="name">product.packaging.form.view</field>
+            <field name="model">product.packaging</field>
+            <field name="inherit_id" ref="product.product_packaging_form_view" />            
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='qty']" position="replace">
+                    <field name="dimensions" />
+                    <field name="weight" />                    
+                </xpath>
+            </field>
+        </record>
+        
+        <!-- remove company column from purchase order lines -->
+        <record id="purchase_order_form" model="ir.ui.view">
+            <field name="name">purchase.order.form</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form" /> 
+            <field name="arch" type="xml">      
+                <xpath expr="//tree[@editable='bottom']/field[@name='company_id']" position="replace" />                
+            </field>
+        </record>    
+        
+        <!-- add distributor/agent field to partner -->
+        <record id="view_partner_form" model="ir.ui.view">
+            <field name="name">res.partner.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="priority" eval="20"/>
+            <field name="arch" type="xml">     
+                <xpath expr="//page[@name='sales_purchases']/group/group/field[@name='customer']" position="after" >
+                    <field name="agent" />
+                    <field name="agent_id" domain="[('agent','=',True)]" attrs="{'invisible': ['|',('agent','=',True),('customer','=',False)]}"/>
+                </xpath>   
+            </field>
+        </record>
+        
+        <!-- add distributor/agent field to sales order -->
+        <record id="view_order_form" model="ir.ui.view">
+            <field name="name">sale.order.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="priority" eval="30" />
+            <field name="arch" type="xml">     
+                <xpath expr="//field[@name='partner_shipping_id']" position="after" >
+                    <field name="agent_id" domain="[('agent','=',True)]"/>
+                </xpath>   
+                <xpath expr="//form/group/group/field[@name='product_id']" position="after">
+                    <field name="option_product_ids" widget="many2many_tags"/>
+                </xpath>   
+                <xpath expr="//tree/field[@name='product_id']" position="after">
+                    <field name="option_product_ids" widget="many2many_tags"/>
+                </xpath> 
+            </field>
+        </record>            
+        
+    </data>
+</odoo>
