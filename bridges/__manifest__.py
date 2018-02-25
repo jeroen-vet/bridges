@@ -17,7 +17,7 @@ Contains company specific customizations and configuration data
     'data': [
         'config.xml',
         #'report_paperformat.xml',
-        'layouts.xml',
+        # 'layouts.xml', # have to do again for 11
         'views.xml',
         
     ],
