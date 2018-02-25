@@ -173,55 +173,6 @@
     <xpath expr="//t[@t-as='l']/tr/td[5]" position="replace" />      
 </template>
 
-<!--
-<template id="kei_report_delivery_document" inherit_id="stock.report_delivery_document">    
-      
-    <xpath expr="//div[@class='page']/h2" position='replace'>
-        <h2>
-            <span t-if="o.picking_type_id.code == 'outgoing' and (o.state == 'done')">Delivery Slip #</span><span t-field="o.name"/>
-        </h2>
-    </xpath> -->
-    <!-- list the result packacke as last col 
-    <xpath expr="//table[@t-if='o.pack_operation_ids']/thead/tr" position="inside">
-        <th t-if="any([pack_operation.result_package_id for pack_operation in o.pack_operation_ids])" class="text-right">
-            <strong>Pack</strong>
-        </th>
-    </xpath>    
-    <xpath expr="//table[@t-if='o.pack_operation_ids']/tbody/tr" position="inside">
-        <td class="text-right">
-          <t t-if="pack_operation.result_package_id">
-            <span t-field="pack_operation.result_package_id.packaging_id.name"/>#<span t-esc="sn" />
-          </t>  
-        </td>
-    </xpath>   
-    <!-- sort by pack 
-    <xpath expr="//tr[@t-foreach='o.pack_operation_ids']" position="before">
-        <t t-set="pack" t-value="o.pack_operation_ids.sorted(key=lambda x: x.result_package_id)[0].result_package_id"/>
-        <t t-set="sn" t-value="1 if pack else 0"/>
-    </xpath>    
-    <xpath expr="//tr[@t-foreach='o.pack_operation_ids']/td[1]" position="before">
-        <t t-if="pack_operation.result_package_id!=pack and pack_operation.result_package_id">
-            <t t-set="pack" t-value="pack_operation.result_package_id" />
-            <t t-set="sn" t-value="sn+1" />
-        </t>
-    </xpath> 
-    <xpath expr="//tr[@t-foreach='o.pack_operation_ids']" position="attributes">
-        <attribute name="t-foreach">o.pack_operation_ids.sorted(key=lambda x: x.result_package_id)</attribute>
-        <!--<attribute name="t-foreach">o.pack_operation_ids[::-1]</attribute> forbidden opcodes 
-    </xpath>  
-  
-    <xpath expr="//t[@t-if='backorder']" position="replace">
-        <t t-if="backorder">
-          Not all items could be shipped this time, the remaining ones will be shipped as soon as they become available.
-        </t>
-    </xpath>    
-    <xpath expr="//div[@class='page']" position="inside">
-        <p t-field="o.note" />
-    </xpath>
-</template>
--->
-
-
 
 </data>
 </odoo>
