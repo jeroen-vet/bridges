@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="report.paperformat_euro" model="report.paperformat">
+            <field name="margin_top">32</field>
+            <field name="header_spacing">25</field>
+        </record>
+    </data>
+</odoo>
