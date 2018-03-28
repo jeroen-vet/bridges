@@ -30,5 +30,35 @@
         </record>    
         
         
+        <!-- condition back in user-defined defaults. Why was it removed in v11?? -->
+        <record id="ir_default_form_view" model="ir.ui.view">
+            <field name="name">ir.default form view</field>
+            <field name="model">ir.default</field>
+            <field name="inherit_id" ref="ir.ir_default_form_view" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='field_id']" position="after">
+                    <field name="condition" />
+                </xpath>
+            </field>
+        </record>           
+         
+         
+        <record id="ir_default_tree_view" model="ir.ui.view">
+            <field name="name">ir.default tree view</field>
+            <field name="model">ir.default</field>
+            <field name="inherit_id" ref="ir.ir_default_tree_view" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='field_id']" position="after">
+                    <field name="condition" />
+                </xpath>
+            </field>
+        </record>                   
+                
+
+                    
+                 
+        
+        
+        
     </data>
 </odoo>
