@@ -15,7 +15,7 @@ Contains company specific customizations and configuration data
     'depends': ['account','sale','purchase'],
     'website': 'http://www.excecbc.com',
     'data': [
-        'config.xml',
+        #'config.xml',
         #'report_paperformat.xml',
         # 'layouts.xml', # have to do again for 11
         'views.xml',
