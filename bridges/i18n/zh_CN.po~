@@ -1,0 +1,337 @@
+# Translation of OpenERP Server.
+# This file contains corrections to translation of following module:
+#	* account
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-04-27 14:47+0000\n"
+"PO-Revision-Date: 2018-04-27 14:47+0000\n"
+"Last-Translator: e2f <projects@e2f.com>, 2018\n"
+"Language-Team: Chinese (China) (https://www.transifex.com/odoo/teams/41243/zh_CN/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: zh_CN\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+
+
+#. module: l10n_cn_base
+#: model:res.country.state,name:l10n_cn_base.state_HB
+msgid "Hubei"
+msgstr "Hubei"
+
+#. module: l10n_cn_base
+#: model:res.country.state,code:l10n_cn_base.state_HB
+msgid "HB"
+msgstr "鄂" 
+
+#. module: l10n_cn_base
+#: model:res.country.state,name:l10n_cn_base.state_HA
+msgid "Henan"
+msgstr "河南省"
+
+#. module: l10n_cn_base
+#: model:res.country.state,code:l10n_cn_base.state_HA
+msgid "HA"
+msgstr "豫"
+
+#. module: l10n_cn_base
+#: model:res.country.state,name:l10n_cn_base.state_GZ
+msgid "Guizhou"
+msgstr "贵州省"
+
+#. module: l10n_cn_base
+#: model:res.country.state,code:l10n_cn_base.state_GZ
+msgid "GZ"
+msgstr "黔"
+
+#. module: l10n_cn_base
+#: model:res.country.state,name:l10n_cn_base.state_HN
+msgid "Hunan"
+msgstr "湖南省"
+
+#. module: l10n_cn_base
+#: model:res.country.state,code:l10n_cn_base.state_HN
+msgid "HN"
+msgstr "湘"
+
+#. module: l10n_cn_base
+#: model:res.country.state,name:l10n_cn_base.state_LN
+msgid "Liaoning"
+msgstr "辽宁省"
+
+#. module: l10n_cn_base
+#: model:res.country.state,code:l10n_cn_base.state_LN
+msgid "LN"
+msgstr "辽"
+
+#. module: l10n_cn_base
+#: model:res.country.state,name:l10n_cn_base.state_CQ
+msgid "Chongqing"
+msgstr "重庆市"
+
+#. module: l10n_cn_base
+#: model:res.country.state,code:l10n_cn_base.state_CQ
+msgid "CQ"
+msgstr "渝"
+
+#. module: l10n_cn_base
+#: model:res.country.state,name:l10n_cn_base.state_XJ
+msgid "Xinjiang"
+msgstr "新疆维吾尔自治区"
+
+#. module: l10n_cn_base
+#: model:res.country.state,code:l10n_cn_base.state_XJ
+msgid "XJ"
+msgstr "新"
+
+#. module: l10n_cn_base
+#: model:res.country.state,name:l10n_cn_base.state_HE
+msgid "Hebei"
+msgstr "Hebei"
+
+#. module: l10n_cn_base
+#: model:res.country.state,code:l10n_cn_base.state_HE
+msgid "HE"
+msgstr "冀"
+
+#. module: l10n_cn_base
+#: model:res.country.state,name:l10n_cn_base.state_HI
+msgid "Hainan"
+msgstr "海南省"
+
+#. module: l10n_cn_base
+#: model:res.country.state,code:l10n_cn_base.state_HI
+msgid "HI"
+msgstr "琼"
+
+#. module: l10n_cn_base
+#: model:res.country.state,name:l10n_cn_base.state_ZJ
+msgid "Zhejiang"
+msgstr "浙江省"
+
+#. module: l10n_cn_base
+#: model:res.country.state,code:l10n_cn_base.state_ZJ
+msgid "ZJ"
+msgstr "浙"
+
+#. module: l10n_cn_base
+#: model:res.country.state,name:l10n_cn_base.state_HL
+msgid "Heilongjiang"
+msgstr "黑龙江省"
+
+#. module: l10n_cn_base
+#: model:res.country.state,code:l10n_cn_base.state_HL
+msgid "HL"
+msgstr "黑"
+
+#. module: l10n_cn_base
+#: model:res.country.state,name:l10n_cn_base.state_SN
+msgid "Shaanxi"
+msgstr "陕西省"
+
+#. module: l10n_cn_base
+#: model:res.country.state,code:l10n_cn_base.state_SN
+msgid "SN"
+msgstr "陕"
+
+#. module: l10n_cn_base
+#: model:res.country.state,name:l10n_cn_base.state_FJ
+msgid "Fujian"
+msgstr "福建省"
+
+#. module: l10n_cn_base
+#: model:res.country.state,code:l10n_cn_base.state_FJ
+msgid "FJ"
+msgstr "闽"
+
+#. module: l10n_cn_base
+#: model:res.country.state,name:l10n_cn_base.state_GX
+msgid "Guangxi"
+msgstr "广西壮族自治区"
+
+#. module: l10n_cn_base
+#: model:res.country.state,code:l10n_cn_base.state_GX
+msgid "GX"
+msgstr "桂"
+
+#. module: l10n_cn_base
+#: model:res.country.state,name:l10n_cn_base.state_NX
+msgid "Ningxia"
+msgstr "宁夏回族自治区"
+
+#. module: l10n_cn_base
+#: model:res.country.state,code:l10n_cn_base.state_NX
+msgid "NX"
+msgstr "宁"
+
+#. module: l10n_cn_base
+#: model:res.country.state,name:l10n_cn_base.state_GD
+msgid "Guangdong"
+msgstr "广东省"
+
+#. module: l10n_cn_base
+#: model:res.country.state,code:l10n_cn_base.state_GD
+msgid "GD"
+msgstr "粤"
+
+#. module: l10n_cn_base
+#: model:res.country.state,name:l10n_cn_base.state_AH
+msgid "Anhui"
+msgstr "安徽省"
+
+#. module: l10n_cn_base
+#: model:res.country.state,code:l10n_cn_base.state_AH
+msgid "AH"
+msgstr "皖"
+
+#. module: l10n_cn_base
+#: model:res.country.state,name:l10n_cn_base.state_NM
+msgid "Inner Mongolia"
+msgstr "内蒙古自治区"
+
+#. module: l10n_cn_base
+#: model:res.country.state,code:l10n_cn_base.state_NM
+msgid "NM"
+msgstr "蒙"
+
+#. module: l10n_cn_base
+#: model:res.country.state,name:l10n_cn_base.state_GS
+msgid "Gansu"
+msgstr "甘肃省"
+
+#. module: l10n_cn_base
+#: model:res.country.state,code:l10n_cn_base.state_GS
+msgid "GS"
+msgstr "甘"
+
+#. module: l10n_cn_base
+#: model:res.country.state,name:l10n_cn_base.state_YN
+msgid "Yunnan"
+msgstr "云南省"
+
+#. module: l10n_cn_base
+#: model:res.country.state,code:l10n_cn_base.state_YN
+msgid "YN"
+msgstr "滇"
+
+#. module: l10n_cn_base
+#: model:res.country.state,name:l10n_cn_base.state_SH
+msgid "Shanghai"
+msgstr "上海市"
+
+#. module: l10n_cn_base
+#: model:res.country.state,code:l10n_cn_base.state_SH
+msgid "SH"
+msgstr "沪"
+
+#. module: l10n_cn_base
+#: model:res.country.state,name:l10n_cn_base.state_BJ
+msgid "Beijing"
+msgstr "北京市"
+
+#. module: l10n_cn_base
+#: model:res.country.state,code:l10n_cn_base.state_BJ
+msgid "BJ"
+msgstr "京"
+
+#. module: l10n_cn_base
+#: model:res.country.state,name:l10n_cn_base.state_JL
+msgid "Jilin"
+msgstr "吉林省"
+
+#. module: l10n_cn_base
+#: model:res.country.state,code:l10n_cn_base.state_JL
+msgid "JL"
+msgstr "吉"
+
+#. module: l10n_cn_base
+#: model:res.country.state,name:l10n_cn_base.state_TJ
+msgid "Tianjin"
+msgstr "天津市"
+
+#. module: l10n_cn_base
+#: model:res.country.state,code:l10n_cn_base.state_TJ
+msgid "TJ"
+msgstr "津"
+
+#. module: l10n_cn_base
+#: model:res.country.state,name:l10n_cn_base.state_XZ
+msgid "Xizang"
+msgstr "西藏自治区"
+
+#. module: l10n_cn_base
+#: model:res.country.state,code:l10n_cn_base.state_XZ
+msgid "XZ"
+msgstr "藏"
+
+
+#. module: l10n_cn_base
+#: model:res.country.state,name:l10n_cn_base.state_JS
+msgid "Jiangsu"
+msgstr "江苏省"
+
+#. module: l10n_cn_base
+#: model:res.country.state,code:l10n_cn_base.state_JS
+msgid "JS"
+msgstr "苏"
+
+#. module: l10n_cn_base
+#: model:res.country.state,name:l10n_cn_base.state_JX
+msgid "Jiangxi"
+msgstr "江西省"
+
+#. module: l10n_cn_base
+#: model:res.country.state,code:l10n_cn_base.state_JX
+msgid "JX"
+msgstr "赣"
+
+#. module: l10n_cn_base
+#: model:res.country.state,name:l10n_cn_base.state_SD
+msgid "Shandong"
+msgstr "山东省"
+
+#. module: l10n_cn_base
+#: model:res.country.state,code:l10n_cn_base.state_SD
+msgid "SD"
+msgstr "鲁"
+
+#. module: l10n_cn_base
+#: model:res.country.state,name:l10n_cn_base.state_QH
+msgid "Qinghai"
+msgstr "青海省"
+
+#. module: l10n_cn_base
+#: model:res.country.state,code:l10n_cn_base.state_QH
+msgid "QH"
+msgstr "青"
+
+#. module: l10n_cn_base
+#: model:res.country.state,name:l10n_cn_base.state_SC
+msgid "Sichuan"
+msgstr "Sichuan"
+
+#. module: l10n_cn_base
+#: model:res.country.state,code:l10n_cn_base.state_SC
+msgid "SC"
+msgstr "蜀"
+
+#. module: l10n_cn_base
+#: model:res.country.state,name:l10n_cn_base.state_SX
+msgid "Shanxi"
+msgstr "山西省"
+
+
+#. module: l10n_cn_base
+#: model:res.country.state,code:l10n_cn_base.state_SX
+msgid "SX"
+msgstr "晋"
+
+#. module: l10n_cn_base
+#: model:ir.model,name:l10n_cn_base.model_res_country_state
+msgid "Country state"
+msgstr "国家的州"
+

@@ -1,0 +1,212 @@
+# Translation of OpenERP Server.
+# This file contains corrections to translation of following module:
+#	* account
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-04-27 14:47+0000\n"
+"PO-Revision-Date: 2018-04-27 14:47+0000\n"
+"Last-Translator: e2f <projects@e2f.com>, 2018\n"
+"Language-Team: Chinese (China) (https://www.transifex.com/odoo/teams/41243/zh_CN/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: zh_CN\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. module: account
+#: model:mail.template,subject:account.email_template_edi_invoice
+msgid "${object.company_id.name} Invoice (Ref ${object.number or 'n/a'})"
+msgstr "${object.company_id.name} 发票 (Ref ${object.number or 'n/a'})"
+
+#. module: account
+#: model:mail.template,body_html:account.email_template_edi_invoice
+msgid ""
+"<div>\n"
+"<p>Dear ${object.partner_id.name}\n"
+"% set access_action = object.with_context(force_website=True).get_access_action()\n"
+"% set is_online = access_action and access_action['type'] == 'ir.actions.act_url'\n"
+"% set access_url = object.get_mail_url()\n"
+"\n"
+"% if object.partner_id.parent_id:\n"
+"    (<i>${object.partner_id.parent_id.name}</i>)\n"
+"% endif\n"
+",</p>\n"
+"<p>Here is, in attachment, your \n"
+"% if object.number:\n"
+"invoice <strong>${object.number}</strong>\n"
+"% else:\n"
+"invoice\n"
+"% endif\n"
+"% if object.origin:\n"
+"(with reference: ${object.origin})\n"
+"% endif\n"
+"amounting in <strong>${format_amount(object.amount_total, object.currency_id)}</strong>\n"
+"from ${object.company_id.name}.\n"
+"</p>\n"
+"\n"
+"% if is_online:\n"
+"    <br/><br/>\n"
+"    <center>\n"
+"      <a href=\"${access_url}\" style=\"background-color: #1abc9c; padding: 20px; text-decoration: none; color: #fff; border-radius: 5px; font-size: 16px;\" class=\"o_default_snippet_text\">View Invoice</a>\n"
+"    </center>\n"
+"% endif\n"
+"    <br/><br/>\n"
+"\n"
+"% if object.state=='paid':\n"
+"    <p>This invoice is already paid.</p>\n"
+"% else:\n"
+"    <p>Please remit payment at your earliest convenience.</p>\n"
+"% endif\n"
+"\n"
+"<p>Thank you,</p>\n"
+"<p style=\"color:#888888\">\n"
+"% if object.user_id and object.user_id.signature:\n"
+"    ${object.user_id.signature | safe}\n"
+"% endif\n"
+"</p>\n"
+"</div>"
+msgstr ""
+"<div>\n"
+"<p>亲爱的${object.partner_id.name}\n"
+"% set access_action = object.with_context(force_website=True).get_access_action()\n"
+"% set is_online = access_action and access_action['type'] == 'ir.actions.act_url'\n"
+"% set access_url = object.get_mail_url()\n"
+"\n"
+"% if object.partner_id.parent_id:\n"
+"    (<i>${object.partner_id.parent_id.name}</i>)\n"
+"% endif\n"
+",</p>\n"
+"<p>附件，你的 \n"
+"% if object.number:\n"
+"付款通知<strong>${object.number}</strong>\n"
+"% else:\n"
+"付款通知\n"
+"% endif\n"
+"% if object.origin:\n"
+"(参考: ${object.origin})\n"
+"% endif\n"
+"金额 <strong>${format_amount(object.amount_total, object.currency_id)}</strong>\n"
+"公司 ${object.company_id.name}.\n"
+"</p>\n"
+"\n"
+"% if is_online:\n"
+"    <br/><br/>\n"
+"    <center>\n"
+"      <a href=\"${access_url}\" style=\"background-color: #1abc9c; padding: 20px; text-decoration: none; color: #fff; border-radius: 5px; font-size: 16px;\" class=\"o_default_snippet_text\">查看付款通知</a>\n"
+"    </center>\n"
+"% endif\n"
+"    <br/><br/>\n"
+"\n"
+"% if object.state=='paid':\n"
+"    <p>此付款通知已支付.</p>\n"
+"% else:\n"
+"    <p>请尽快汇款</p>\n"
+"% endif\n"
+"\n"
+"<p>谢谢</p>\n"
+"<p style=\"color:#888888\">\n"
+"% if object.user_id and object.user_id.signature:\n"
+"    ${object.user_id.signature | safe}\n"
+"% endif\n"
+"</p>\n"
+"</div>"
+
+
+#. module: account
+#: model:ir.ui.view,arch_db:account.portal_invoice_report
+#: model:ir.ui.view,arch_db:account.report_invoice_document
+msgid "<strong>Invoice Date:</strong>"
+msgstr "<strong>日期：</strong>"
+
+#. module: account
+#: model:ir.ui.view,arch_db:account.portal_invoice_page
+#: model:ir.ui.view,arch_db:account.report_invoice_document
+msgid "Cancelled Invoice"
+msgstr "已取消的付款通知"
+
+#. module: account
+#: code:addons/account/models/account_invoice.py:437
+#: model:ir.ui.view,arch_db:account.invoice_form
+#: model:ir.ui.view,arch_db:account.portal_invoice_page
+#: model:ir.ui.view,arch_db:account.report_invoice_document
+#, python-format
+msgid "Draft Invoice"
+msgstr "草稿付款通知"
+
+#. module: account
+#: code:addons/account/models/account_invoice.py:1226
+#: model:ir.model,name:account.model_account_invoice
+#: model:ir.model.fields,field_description:account.field_account_invoice_tax_invoice_id
+#: model:ir.model.fields,field_description:account.field_account_move_line_invoice_id
+#: model:ir.model.fields,field_description:account.field_res_partner_invoice_warn
+#: model:ir.model.fields,field_description:account.field_res_users_invoice_warn
+#: model:ir.ui.view,arch_db:account.account_journal_dashboard_kanban_view
+#: model:ir.ui.view,arch_db:account.invoice_form
+#: model:ir.ui.view,arch_db:account.invoice_supplier_tree
+#: model:ir.ui.view,arch_db:account.invoice_tree
+#: model:ir.ui.view,arch_db:account.portal_invoice_page
+#: model:ir.ui.view,arch_db:account.report_invoice_document
+#: model:ir.ui.view,arch_db:account.view_account_invoice_filter
+#: model:ir.ui.view,arch_db:account.view_account_invoice_report_search
+#: model:res.request.link,name:account.req_link_invoice
+#, python-format
+msgid "Invoice"
+msgstr "付款通知"
+
+#. module: account
+#: model:ir.ui.view,arch_db:account.portal_my_invoices
+msgid "Invoice #"
+msgstr "付款通知#"
+
+
+
+#. module: account
+#: code:addons/account/controllers/portal.py:70
+#: model:ir.model.fields,field_description:account.field_account_invoice_date_invoice
+#: model:ir.ui.view,arch_db:account.portal_my_invoices
+#: model:ir.ui.view,arch_db:account.report_payment_receipt
+#: model:ir.ui.view,arch_db:account.view_account_invoice_filter
+#, python-format
+msgid "Invoice Date"
+msgstr "日期"
+
+#. module: account
+#: model:ir.ui.view,arch_db:account.report_payment_receipt
+msgid "Invoice Number"
+msgstr "付款通知号码"
+
+#. module: account
+#: model:mail.template,report_name:account.email_template_edi_invoice
+msgid ""
+"Invoice_${(object.number or '').replace('/','_')}_${object.state == 'draft' "
+"and 'draft' or ''}"
+msgstr ""
+"付款通知_${(object.number 或 '').取代('/','_')}_${object.state == 'draft' 和 '草稿' 或''}"
+
+#. module: account
+#: model:ir.actions.act_window,name:account.action_invoice_refund_out_tree
+#: model:ir.actions.act_window,name:account.action_invoice_tree
+#: model:ir.actions.report,name:account.account_invoices
+#: model:ir.model.fields,field_description:account.field_account_payment_invoice_ids
+#: model:ir.model.fields,field_description:account.field_account_register_payments_invoice_ids
+#: model:ir.model.fields,field_description:account.field_res_partner_invoice_ids
+#: model:ir.model.fields,field_description:account.field_res_users_invoice_ids
+#: model:ir.ui.menu,name:account.menu_action_account_invoice_report_all
+#: model:ir.ui.view,arch_db:account.account_journal_dashboard_kanban_view
+#: model:ir.ui.view,arch_db:account.portal_my_home_invoice
+#: model:ir.ui.view,arch_db:account.portal_my_home_menu_invoice
+#: model:ir.ui.view,arch_db:account.portal_my_invoices
+#: model:ir.ui.view,arch_db:account.res_config_settings_view_form
+#: model:ir.ui.view,arch_db:account.view_account_payment_form
+#: model:ir.ui.view,arch_db:account.view_account_payment_graph
+#: model:ir.ui.view,arch_db:account.view_invoice_graph
+#: model:ir.ui.view,arch_db:account.view_invoice_line_calendar
+#: model:ir.ui.view,arch_db:account.view_invoice_pivot
+msgid "Invoices"
+msgstr "付款通知"
+
+
+
